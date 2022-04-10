@@ -27,42 +27,37 @@
  <%= f.submit "Create Book" %>
 <% end %>
 
-<!--自分の投稿一覧-->
+
+<!--投稿一覧-->
   <div>
     <!--見出し-->
-    <h1>Books</h1>
+    <h1>Users</h1>
     <table>
       <!--テーブルのヘッダー-->
       <thead>
         <tr>
+          <th>image</th>
+          <th>name</th>
           <th></th>
-          <th>Title</th>
-          <th>Opinion</th>
         </tr>
       </thead>
       <!--実データ-->
-      <% @books.each do |book| %>
+      <% @users.each do |user| %>
         <tbody>
           <tr>
             <td>
-              <!--ユーザー詳細にリンク-->
-              <%= link_to user_path(@user.id) do %>
-                <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-              <% end %>
+              <!--ユーザー画像-->
+              <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
             </td>
 
             <td>
-              <!--タイトルブック詳細にリンク-->
-              <%= link_to book_path(book.id) do %>
-                <%= book.title %>
-              <% end %>
+              <!--ユーザー名-->
+                <%= user.name %>
             </td>
 
             <td>
-              <!--詳細-->
-              <%= book.body %>
+               <%= link_to "Show",user_path(@user.id) %>
             </td>
-
           </tr>
         </tbody>
       <% end %>
