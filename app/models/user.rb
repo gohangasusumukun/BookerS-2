@@ -3,8 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-　
-　# name：一意性を持たせ、かつ2～20文字の範囲で設定。
+
+# name：一意性を持たせ、かつ2～20文字の範囲で設定。
   validates:name,
     presence:true,
     length:{minimum:2,maximum:20},

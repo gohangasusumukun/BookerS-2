@@ -1,58 +1,51 @@
-<!--ユーザー一覧ページ-->
+<div class="container pt-3 pb-5">
+  <div class="row">
+    <div class="col-lg-3 pr-1">
+      <!--エラーメッセージ-->
+      <%= render "books/error_message" %>
 
-<!--プロフィール-->
-<!--プロフィール（部分テンプレート）-->
-<%= render "users/userinfo",user:@user %>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>error prohibited this obj from being saved:
-  <%= @book.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-
-<!--投稿フォーム-->
-<h1>New book</h1>
-<%= form_with model: @book,local:true do |f| %>
- <h4>Title</h4>
- <%= f.text_field :title %>
- <h4>Option</h4>
- <%= f.text_area :body %>
- <%= f.submit "Create Book" %>
-<% end %>
+      <!--プロフィール（部分テンプレート）-->
+      <%= render "users/userinfo",user:@user %>
 
 
-<!--ユーザー一覧-->
-  <div>
-    <!--見出し-->
-    <h1>Users</h1>
-    <table>
-      <!--テーブルのヘッダー-->
-      <thead>
-        <tr>
-          <th>image</th>
-          <th>name</th>
-          <th></th>
-        </tr>
-      </thead>
-      <!--実データ-->
-      <% @users.each do |user| %>
-        <tbody>
+      <!--投稿フォーム（部分テンプレート）-->
+      <%= render "books/booksubmit",book:@book %>
+    </div>
+
+  <!--ユーザー一覧-->
+    <div class="col-lg-9">
+      <!--見出し-->
+      <h1>Users</h1>
+      <table class="table table-resposive">
+        <!--テーブルのヘッダー-->
+        <thead>
           <tr>
-            <td>
-              <!--ユーザー画像-->
-              <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-            </td>
-
-            <td>
-              <!--ユーザー名-->
-                <%= user.name %>
-            </td>
-
-            <td>
-               <%= link_to "Show",user_path(user.id) %>
-            </td>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
           </tr>
-        </tbody>
-      <% end %>
-    </table>
+        </thead>
+        <!--実データ-->
+        <% @users.each do |user| %>
+          <tbody>
+            <tr>
+              <td>
+                <!--ユーザー画像-->
+                <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg",size:'60x60' %>
+              </td>
+
+              <td>
+                <!--ユーザー名-->
+                  <%= user.name %>
+              </td>
+
+              <td>
+                 <%= link_to "Show",user_path(user.id) %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
   </div>
+</div> 
